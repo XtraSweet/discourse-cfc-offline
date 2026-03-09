@@ -93,6 +93,13 @@ function networkFirst(request, fallbackUrl) {
     });
 }
 
+// ── Message handler: allow client to force activation ─────────────
+self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
 // ── Fetch: intercept and cache selectively ───────────────────────
 
 self.addEventListener("fetch", function (event) {
@@ -152,6 +159,9 @@ self.addEventListener("fetch", function (event) {
     event.respondWith(networkFirst(request));
     return;
   }
+
+  // All other same-origin requests: let the browser handle normally
+});
 
   // All other same-origin requests: let the browser handle normally
 });
