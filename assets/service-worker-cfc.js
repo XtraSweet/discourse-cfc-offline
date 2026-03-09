@@ -162,6 +162,3 @@ self.addEventListener("fetch", function (event) {
 
   // All other same-origin requests: let the browser handle normally
 });
-
-  // All other same-origin requests: let the browser handle normally
-});
